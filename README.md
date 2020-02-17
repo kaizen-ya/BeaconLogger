@@ -13,7 +13,7 @@ Beacon購入方法.pdf を参照
 
 下記の手順でGimbalビーコンをiBeaconモードに設定する  
 尚、手順中の  
-[web]は https://manager.gimbal.com/login/users/sign_in  
+[web]は <https://manager.gimbal.com/login/users/sign_in>  
 [app]は iPhoneアプリのGimbal Beacon Manager  
 を意味する。(Android未検証)  
 
@@ -34,7 +34,7 @@ Beacon購入方法.pdf を参照
     編集したconf.txtをmicroSDカードに保存し、M5Stackに格納する。  
    
 ２．USBドライバーのインストール  
-　　https://m5stack.com/pages/download　からCP210X Driverをダウンロードし、インストール。  
+　　<https://m5stack.com/pages/download>　からCP210X Driverをダウンロードし、インストール。  
 
 ３．M5StackをPCに接続し、ポート番号を確認。  
 　　M5StackをPCに接続。  
