@@ -14,8 +14,8 @@ Beacon購入方法.pdf を参照
 下記の手順でGimbalビーコンをiBeaconモードに設定する  
 尚、手順中の  
 [web]は https://manager.gimbal.com/login/users/sign_in  
-[app]は スマートフォンアプリのGimbal Beacon Manager  
-を意味する。  
+[app]は iPhoneアプリのGimbal Beacon Manager  
+を意味する。(Android未検証)  
 
 １．[web] Beacons > Beacon Configurations 追加  
 　　識別用のMajor,Minorを設定する。  
@@ -29,9 +29,9 @@ Beacon購入方法.pdf を参照
 # M5Stack設定方法
 
 １．設定ファイルconf.txt編集  
-　　devid ・・・ M5Stackが複数ある場合用に管理番号を設定  
-  　uuid ・・・ Gimbalビーコン設定時に取得したUUIDを設定  
-   編集したconf.txtをmicroSDカードに保存し、M5Stackに格納する。  
+    devid ・・・ M5Stackが複数ある場合用に管理番号を設定  
+    uuid ・・・ Gimbalビーコン設定時に取得したUUIDを設定  
+    編集したconf.txtをmicroSDカードに保存し、M5Stackに格納する。  
    
 ２．USBドライバーのインストール  
 　　https://m5stack.com/pages/download　からCP210X Driverをダウンロードし、インストール。  
