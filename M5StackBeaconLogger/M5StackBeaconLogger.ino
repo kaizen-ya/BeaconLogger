@@ -166,7 +166,9 @@ void loop() {
       }
     }
   }
-  quicksort(beacon, 0, ix);
+  if (ix > 0) {
+     quicksort(beacon, 0, ix-1);
+  }
   
   M5.Lcd.clear();
   M5.Lcd.setCursor(0, 0);
