@@ -27,6 +27,7 @@ File file;
 RTC_TimeTypeDef RTCtime;
 RTC_DateTypeDef RTCDate;
 char timeStrbuff[64];
+int brt = 5;
 
 // quick sort descending order
 void quicksort(Beacon a[], int left, int right) {
@@ -107,19 +108,25 @@ void setup() {
       RTCtime.Hours,RTCtime.Minutes,RTCtime.Seconds);
     M5.Lcd.setCursor(10, 100);
     M5.Lcd.println(timeStrbuff);
-    M5.Lcd.setCursor(30+cur*40, 120);
+    if (cur < 6) {
+      M5.Lcd.setCursor(30+cur*40, 120);
+    } else {
+      M5.Lcd.setCursor(150, 160);
+    }
     M5.Lcd.println("^^");
+    M5.Lcd.setCursor(10, 140);
+    M5.Lcd.printf("Brightness: %d", brt);
 
     // check Button
-    if (M5.BtnA.wasReleased() || M5.BtnA.pressedFor(200)) {
+    if (M5.BtnA.pressedFor(500)) {
       incr ++;
-    } else if (M5.BtnB.wasReleased() || M5.BtnB.pressedFor(200)) {
+    } else if (M5.BtnB.pressedFor(500)) {
       incr --;
-    } else if (M5.BtnC.wasReleasefor(200)) {
+    } else if (M5.BtnC.wasReleasefor(500)) {
       cur ++;
     }
 
-    if (cur > 5) {
+    if (cur > 6) {
       break;
     }
 
@@ -127,7 +134,7 @@ void setup() {
     if (incr != 0) {
       if (cur == 0 && RTCDate.Year + incr >= 0) {
         RTCDate.Year = RTCDate.Year + incr;
-      } else if (cur == 1 && RTCDate.Month + incr >= 1 && RTCDate.Month <= 12) {
+      } else if (cur == 1 && RTCDate.Month + incr >= 1 && RTCDate.Month + incr <= 12) {
         RTCDate.Month = RTCDate.Month + incr;
       } else if (cur == 2 && RTCDate.Date + incr >= 1 && RTCDate.Date + incr <= 31) {
         RTCDate.Date = RTCDate.Date + incr;
@@ -137,9 +144,12 @@ void setup() {
         RTCtime.Minutes = RTCtime.Minutes + incr;
       } else if (cur == 5 && RTCtime.Seconds + incr >= 0 && RTCtime.Seconds + incr <= 59) {
         RTCtime.Seconds = RTCtime.Seconds + incr;
+      } else if (cur == 6 && brt + incr >= 0 && brt + incr <= 5) {
+        brt = brt + incr;
       }
       M5.Rtc.SetDate(&RTCDate);
       M5.Rtc.SetTime(&RTCtime);
+      M5.Axp.SetLcdVoltage(2500 + brt*0.2*(3300-2500)); // set brightness 2500 - 3300
     }
 
     incr = 0;
@@ -176,14 +186,14 @@ void setup() {
   // display configure
   M5.Lcd.clear();
   M5.Lcd.setTextWrap(true);
-  M5.Axp.SetLcdVoltage(2500); // set brightness 2500 - 3300
-  M5.Axp.SetLed(false); // turn off led
+  M5.Lcd.setCursor(0, 0);
   M5.Lcd.printf("devid -> %s\n", devid.c_str());
   M5.Lcd.printf("uuid -> %s\n", tuuid.c_str());
   M5.Lcd.printf("sampling time -> %d\n", scanTime * sampleCnt);
   M5.Lcd.printf("%04d-%02d-%02d %02d:%02d:%02d",
     RTCDate.Year,RTCDate.Month,RTCDate.Date,
     RTCtime.Hours,RTCtime.Minutes,RTCtime.Seconds);
+  M5.Axp.SetLed(false); // turn off led
 
   // puts header
   int ix = 0;
