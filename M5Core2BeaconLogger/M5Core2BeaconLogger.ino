@@ -106,16 +106,20 @@ void setup() {
     sprintf(timeStrbuff,"%d/%02d/%02d  %02d:%02d:%02d",
       RTCDate.Year,RTCDate.Month,RTCDate.Date,
       RTCtime.Hours,RTCtime.Minutes,RTCtime.Seconds);
-    M5.Lcd.setCursor(10, 100);
+    M5.Lcd.setCursor(10, 50);
     M5.Lcd.println(timeStrbuff);
     if (cur < 6) {
-      M5.Lcd.setCursor(30+cur*40, 120);
-    } else {
-      M5.Lcd.setCursor(150, 160);
+      M5.Lcd.setCursor(30+cur*40, 70);
+    } else if (cur == 6) {
+      M5.Lcd.setCursor(150, 110);
+    } else if (cur == 7) {
+      M5.Lcd.setCursor(130, 150);
     }
     M5.Lcd.println("^^");
-    M5.Lcd.setCursor(10, 140);
+    M5.Lcd.setCursor(10, 90);
     M5.Lcd.printf("Brightness: %d", brt);
+    M5.Lcd.setCursor(10, 130);
+    M5.Lcd.printf("Interval: %d sec.", scanTime * sampleCnt);
 
     // check Button
     if (M5.BtnA.pressedFor(500)) {
@@ -126,7 +130,7 @@ void setup() {
       cur ++;
     }
 
-    if (cur > 6) {
+    if (cur > 7) {
       break;
     }
 
@@ -146,6 +150,8 @@ void setup() {
         RTCtime.Seconds = RTCtime.Seconds + incr;
       } else if (cur == 6 && brt + incr >= 0 && brt + incr <= 5) {
         brt = brt + incr;
+      } else if (cur == 7 && sampleCnt + incr*3 >= 3 && sampleCnt + incr*3 <= 12) {
+        sampleCnt = sampleCnt + incr*3;
       }
       M5.Rtc.SetDate(&RTCDate);
       M5.Rtc.SetTime(&RTCtime);
@@ -173,9 +179,6 @@ void setup() {
       if (conf_key.compareTo("uuid") == 0) {
         tuuid = conf_value;
         tuuid.toUpperCase();
-      }
-      if (conf_key.compareTo("sample_cnt") == 0) {
-        sampleCnt = conf_value.toInt();
       }
     } else if (conf_c != '\r') {
       conf_txt += char(conf_c);
