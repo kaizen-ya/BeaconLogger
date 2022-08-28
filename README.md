@@ -2,7 +2,7 @@
 
 M5StackにiBeacon受信プログラムを書き込み、iBeaconモードに設定したGimbalビーコンを使って動線分析をする。  
 ※M5Stack CORE2に対応しました。M5Core2BeaconLogger にプログラムを保存しています。今後メンテナンスはCORE2版のみとします。  
-　RTCで日時を設定し、SDカード記録時に日時も記録します。  
+　端末起動時にRTCの日時を設定し、SDカード記録時に日時も記録します。  
 
 # Gimbalビーコン購入方法
 
