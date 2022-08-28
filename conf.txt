@@ -1,2 +1,3 @@
 devid=03
 uuid=XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+sample_cnt=6
