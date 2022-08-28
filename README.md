@@ -33,7 +33,6 @@ Beacon購入方法.pdf を参照
 １．設定ファイルconf.txt編集  
     devid ・・・ M5Stackが複数ある場合用に管理番号を設定  
     uuid ・・・ Gimbalビーコン設定時に取得したUUIDを設定  
-    sample_cnt ・・・ サンプリング周期（回数）を設定 ※CORE2版のみ  
     編集したconf.txtをmicroSDカードに保存し、M5Stackに格納する。  
    
 ２．USBドライバーのインストール  
@@ -50,4 +49,4 @@ Beacon購入方法.pdf を参照
 　　load.batを実行。  
  
  ３０秒に１度、最も近接したビーコンのMajor-MinorがCSVデータ（devid-追番.csv）として保存される。  
- ※CORE2版は5秒×サンプリング周期に１度、RSSIが小さい順（近い順）に３つのMajor-MinorとRSSIが保存されます。  
+ ※CORE2版は端末起動時に設定した時間間隔で、RSSIが小さい順（近い順）に３つのMajor-MinorとRSSIが保存されます。  
